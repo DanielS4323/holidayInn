@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <img class="img-fluid" src="{{ imageURL }}/{{ accomm.image }}" alt="">
+        </div>
+        <div class="col-6">
+            <div class="container">
+               <h5>{{accomm.name}}</h5>
+               <span>{{accomm.country}}, {{accomm.city}}</span>
+                <p>{{accomm.address}}</p>
+                <p>{{accomm.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    
+        <div class="col">
+            <h5 class="text-center">Rating:</h5>
+            <div class="text-center">
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                    </span>
+                  </ng-template>
+                  <ngb-rating
+                    [(rate)]="accomm.rating"
+                    [starTemplate]="t"
+                    [readonly]="true"
+                    [max]="5"
+                  ></ngb-rating>
+            </div>
+        </div>
+        <div class="col">
+            <h5 class="text-center">Average Reviews:</h5>
+            <div class="text-center">
+                <ng-template #t let-fill="fill">
+                    <span class="star" [class.full]="fill === 100">
+                      <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                    </span>
+                  </ng-template>
+                  <ngb-rating
+                    [(rate)]="accomm.rating"
+                    [starTemplate]="t"
+                    [readonly]="true"
+                    [max]="5"
+                  ></ngb-rating>
+            </div>
+        </div>
+    </div>
+    <h3 class="text-center">Reviews</h3>
+    <div class="container col-sm-6" *ngFor="let rev of reviews">
+        
+         <div class="row ">
+            <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+              </ng-template>
+              <ngb-rating
+                [(rate)]="rev.rating"
+                [starTemplate]="t"
+                [readonly]="true"
+                [max]="5"
+              ></ngb-rating>
+            <p>{{rev.review}}</p>
+         </div>
+    </div>
+</div>

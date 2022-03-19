@@ -1,0 +1,43 @@
+
+<div class="row mt-3">
+    <div class="col-6">
+        <input type="file" (change)="onChange($event)">
+        <div class="col-6 text-center">
+            <button  class="btn btn-secondary my-3" (click)="onUpload()">Upload</button>
+        </div>
+        <div class="col">
+          <img [src]="url" alt="" class="img-fluid">
+        </div>
+    </div>
+    <div class="col-6">
+        <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name" 
+              [(ngModel)]="addNew.name">
+           
+            </div>
+            <div class="form-group">
+              <label for="place">Place</label>
+              <input type="text" class="form-control" name="place" id="place" placeholder=""
+              [(ngModel)]="addNew.city">
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" name="address" id="address" placeholder=""
+              [(ngModel)]="addNew.address">
+            </div>
+            <div class="form-group">
+              <label for="rating">Rating</label>
+              <input type="number" class="form-control" name="rating" id="rating" placeholder=""
+              [(ngModel)]="addNew.rating">
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea class="form-control" name="desc" id="desc" rows="3"
+                [(ngModel)]="addNew.description"></textarea>
+              </div>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+          </form>
+    </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="row my-2">
+  <div class="col-4">
+    <select [(ngModel)]="selected" (change)="onChangeSel(selected)">
+      <option value="" selected>City</option>
+      <option *ngFor="let place of places" value="{{ place.city }}">
+        {{ place.city }}
+      </option>
+    </select>
+  </div>
+  <div class="col-8">
+    <span class="float-right">
+      Rating From:<input
+        type="number"
+        [(ngModel)]="params.filter.ratingFrom"
+        (change)="getAccomms()"
+      />
+      Rating To:
+      <input
+        type="number"
+        [(ngModel)]="params.filter.ratingTo"
+        (change)="getAccomms()"
+      />
+    </span>
+  </div>
+</div>
+
+<div class="row" *ngFor="let item of accomms" [routerLink]="['/details', item._id]">
+  <div class="col-6 offset-3 text-center">
+    <div class="container" style="cursor: pointer">
+      <div *ngIf="item.image; then thenBlock; else elseBlock"></div>
+      <ng-template #thenBlock>
+        <img class="img-fluid" src="{{ imageURL }}/{{ item.image }}" alt="" />
+      </ng-template>
+      <ng-template #elseBlock>
+        <img
+          class="img-fluid"
+          src="../../assets/images/hotel-default.jpg"
+          alt=""
+        />
+      </ng-template>
+
+      <h5>{{ item.name }}</h5>
+      <p>{{ item.city }}, {{ item.country }}</p>
+      <p>{{ item.address }}</p>
+      <hr />
+      <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+          <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+        </span>
+      </ng-template>
+
+      <ngb-rating
+        [(rate)]="item.rating"
+        [starTemplate]="t"
+        [readonly]="true"
+        [max]="5"
+      ></ngb-rating>
+    </div>
+    <hr />
+  </div>
+  <div class="row">
+    <div class="col-6">
+    </div>
+  </div>
+</div>
+<div class="text-center">
+  <button (click)="pageSize()">Load More</button>
+</div>
+
