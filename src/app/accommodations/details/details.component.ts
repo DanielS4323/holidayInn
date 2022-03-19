@@ -17,6 +17,7 @@ export class DetailsComponent implements OnInit {
   accomm: Accommodation = new Accommodation()
   imageURL: string = 'http://localhost:3000/image';
   reviews: Review[] = []
+  rate: number = 0
 
   constructor(private service: HolidayService,
     private route: ActivatedRoute,
@@ -39,7 +40,7 @@ export class DetailsComponent implements OnInit {
   getDetails() {
     this.service.getDetails(this.accID).subscribe((accomm: Accommodation) => {
       this.accomm = accomm
-      console.log(accomm);
+      
       
   })
   }
@@ -47,13 +48,19 @@ export class DetailsComponent implements OnInit {
   getReviews() {
     this.service.getReviews(this.accID).subscribe((review: Review[]) => {
       this.reviews = review
+      this.rate = this.getAvg()
+      
     })
   }
 
   getAvg(): number {
+
     return this.reviews.reduce((a,b,i,arr) => {
       return a + (b.rating/arr.length)
     },0)
+
+    
+    
   }
 
 
