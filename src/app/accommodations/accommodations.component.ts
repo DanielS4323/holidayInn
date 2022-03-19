@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {  NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Accommodation } from '../model/accommodation.model';
@@ -20,7 +20,7 @@ export class AccommodationsComponent implements OnInit {
 
   params = {
     page: 1,
-    pageSize: 5,
+    pageSize: 2,
     filter: {
       city: '',
       ratingFrom: 1,
@@ -42,10 +42,11 @@ export class AccommodationsComponent implements OnInit {
   ngOnInit(): void {
     this.getAccomms();
     this.getPlaces();
+    
   }
 
   onChangeSel(val: string) {
-    this.params.pageSize = 5;
+    this.params.pageSize = 2;
     this.params.filter.city = val;
     this.getAccomms();
   }
@@ -71,10 +72,35 @@ export class AccommodationsComponent implements OnInit {
     this.getAccomms();
   }
 
-  // onClickNavigate() {
-  //   this.router.navigate(['/:id'])
-  // }
+  @HostListener('window:scroll', ['$event'])
 
+
+  onWindowScroll(ev: Event) {
+  
+
+
+    
+    
+  }
+
+  bottomReached(): boolean {
+    return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
+    // return window.scrollY >= document.body.offsetHeight;
+    //offsetHeight + myDiv.scrollTop >= myDiv.scrollHeight
+  }
+
+//   window.onscroll = function(ev) {
+//     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+//         alert("you're at the bottom of the page");
+//     }
+// };
+
+
+counter = 0;
+@HostListener('window:keydown.enter', ['$event'])
+handleKeyDown(event: KeyboardEvent) {
+  this.counter++;
+}
   
 }
 
