@@ -20,14 +20,14 @@ export class AccommodationsComponent implements OnInit {
 
   params = {
     page: 1,
-    pageSize: 2,
+    pageSize: 5,
     filter: {
       city: '',
       ratingFrom: 1,
       ratingTo: 5,
     },
   };
-  closeResult: string = ''
+  
 
   constructor(
     private service: HolidayService,
@@ -72,35 +72,6 @@ export class AccommodationsComponent implements OnInit {
     this.getAccomms();
   }
 
-  @HostListener('window:scroll', ['$event'])
-
-
-  onWindowScroll(ev: Event) {
-  
-
-
-    
-    
-  }
-
-  bottomReached(): boolean {
-    return (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
-    // return window.scrollY >= document.body.offsetHeight;
-    //offsetHeight + myDiv.scrollTop >= myDiv.scrollHeight
-  }
-
-//   window.onscroll = function(ev) {
-//     if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-//         alert("you're at the bottom of the page");
-//     }
-// };
-
-
-counter = 0;
-@HostListener('window:keydown.enter', ['$event'])
-handleKeyDown(event: KeyboardEvent) {
-  this.counter++;
-}
   
 }
 
