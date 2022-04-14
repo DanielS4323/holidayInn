@@ -26,20 +26,19 @@ Featuring 4 pages:
   
   # Installation
   
-  1.Clone the repo 
+1.Clone the repo 
     ``git clone https://github.com/DanielS4323/holidayInn_angular.git``
     
-  2.Install NPM packages
+2.Install NPM packages
       ``npm install``
       
-  3.Clone the server
+3.Clone the server
    ``git clone https://github.com/DanielS4323/server_for_holidayIn.git``
-        
-        
-  4. Install NPM packages
+   
+4. Install NPM packages
    ``npm install``
-          
-   5. Enjoy!
+   
+5. Enjoy!
 
 # Contact
 My LinkedIn: ``https://www.linkedin.com/in/daniel-sarvak-09176421b/``
